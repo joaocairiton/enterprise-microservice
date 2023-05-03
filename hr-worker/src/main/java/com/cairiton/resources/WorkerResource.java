@@ -18,8 +18,6 @@ import com.cairiton.entities.Worker;
 import com.cairiton.repositories.WorkerRepository;
 
 
-
-
 @RefreshScope
 @RestController
 @RequestMapping(value ="/workers")
