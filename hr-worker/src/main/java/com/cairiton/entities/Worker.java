@@ -17,6 +17,7 @@ public class Worker implements Serializable{
 	
 	
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
@@ -31,25 +32,19 @@ public class Worker implements Serializable{
 		this.dailyIncome = dailyIncome;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Double getDailyIcome() {
-		return dailyIncome;
-	}
+	
+	
+	  public Long getId() { return id; }
+	  
+	  public void setId(Long id) { this.id = id; }
+	  
+	  public String getName() { return name; }
+	  
+	  public void setName(String name) { this.name = name; }
+	  
+	  public Double getDailyIcome() { return dailyIncome; }
+	 
+	 
 
 	public void setDailyIcome(Double dailyIcome) {
 		this.dailyIncome = dailyIcome;
@@ -71,6 +66,10 @@ public class Worker implements Serializable{
 		Worker other = (Worker) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
+
+	
 	
 	
 

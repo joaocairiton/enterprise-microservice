@@ -3,11 +3,10 @@ package com.cairiton.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cairiton.entities.Worker;
 import com.cairiton.repositories.WorkerRepository;
+import com.cairiton.service.WorkerService;
 
 //@RefreshScope
 @RestController
@@ -28,11 +28,15 @@ public class WorkerResource {
 	 * @Value("${test.config}") private String testConfig;
 	 */
 
-	@Autowired
-	private Environment env;
+	/*
+	 * @Autowired private Environment env;
+	 */
 
 	@Autowired
 	private WorkerRepository workerRepository;
+	
+	@Autowired
+	private WorkerService workerService;
 
 	/*
 	 * @GetMapping(value= "/configs") public ResponseEntity<Void> getConfigs(){
@@ -61,7 +65,12 @@ public class WorkerResource {
 	 * ResponseEntity.ok(obj); }
 	 */
 	
-	
+	@GetMapping("/{workerId}")
+	public ResponseEntity<Worker> buscar(@PathVariable Long workerId) {
+				
+			  Worker obj = workerService.findById(workerId); return
+			  ResponseEntity.ok().body(obj);
+	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -69,5 +78,13 @@ public class WorkerResource {
 		return workerRepository.save(worker);
 		
 	}
+	
+	
+	
+
+	
+	
+	
+	
 
 }
